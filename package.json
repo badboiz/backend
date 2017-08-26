@@ -20,6 +20,8 @@
   "homepage": "https://github.com/badboiz/backend#readme",
   "dependencies": {
     "@types/node": "^8.0.25",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "gps-util": "^1.0.1",
     "gulp": "^3.9.1",
