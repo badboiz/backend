@@ -31,7 +31,7 @@ export function checkUsersSurround(userlat, userlong) {
 			];
 for (var listing of exisiting_list){
 	var distance = gps.getDistance(userlong, userlat, listing.long, listing.lat)
-	if (distance/1000 < 4 ){
+	if (distance/1000 < 2 ){
 		new_output_list.push(listing);
 	}
 }

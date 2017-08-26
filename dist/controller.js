@@ -32,7 +32,7 @@ function checkUsersSurround(userlat, userlong) {
     for (var _i = 0, exisiting_list_1 = exisiting_list; _i < exisiting_list_1.length; _i++) {
         var listing = exisiting_list_1[_i];
         var distance = gps.getDistance(userlong, userlat, listing.long, listing.lat);
-        if (distance / 1000 < 4) {
+        if (distance / 1000 < 2) {
             new_output_list.push(listing);
         }
     }
