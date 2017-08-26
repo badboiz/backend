@@ -1,5 +1,5 @@
 const gps = require('gps-util')
-import {createListing, readListings} from './model'
+import {createListing, readListings, readUserListings} from './model'
 
 export function makeListing(title, image, lat, long, price,description,userid, callback) {
 	createListing(title, image, lat, long, price, description, userid, callback)
@@ -16,4 +16,8 @@ export function getLocalListings(userLat, userLong, callback) {
 		}
 		callback(localListings)
 	})
+}
+
+export function getUserListings(user, callback) {
+	readUserListings(user, callback)
 }

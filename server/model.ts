@@ -49,3 +49,11 @@ export function readListings(callback) {
 		})
 	})
 }
+
+export function readUserListings(user, callback) {
+	connect((db) => {
+		db.collection(LISTINGS_COLLECTION).find({user: user}).toArray((err, docs) => {
+			callback(docs)
+		})
+	})
+}

@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-import {getLocalListings, makeListing} from './controller'
+import {getLocalListings, getUserListings, makeListing} from './controller'
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -32,15 +32,22 @@ app.get('/test', function(req, res) {
 })
 
 app.get('/listings', function(req, res) {
-	const params = ['lat', 'long']
-	if(hasParameters(req.query, params)) {
+	console.log("listings")
+	const localParams = ['lat', 'long']
+	const userParams = ['user']
+	if(hasParameters(req.query, userParams)) {
+		console.log("getting user listings")
+		getUserListings(req.query.user, (userListings) => {
+			console.log(userListings)
+			res.json(userListings)
+		})
+	} else if(hasParameters(req.query, localParams)) {
 		getLocalListings(req.query.lat, req.query.long, (localListings) => {
 			res.json(localListings)
 		})
 	} else {
-		res.send('One or more of the parameters [' + params.toString() + '] were missing').status(400)
+		res.send('One or more of the parameters [' + localParams.toString() + '] were missing').status(400)
 	}
-
 })
 
 app.post('/listings', function(req, res) {
