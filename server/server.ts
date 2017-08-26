@@ -25,6 +25,8 @@ function hasParameters(query, params) {
 
 // Routing
 
+
+
 app.get('/test', function(req, res) {
 	res.send('Quiky is up!')
 })
@@ -38,14 +40,14 @@ app.get('/listings', function(req, res) {
 	} else {
 		res.send('One or more of the parameters [' + params.toString() + '] were missing').status(400)
 	}
-	
+
 })
 
 app.post('/listings', function(req, res) {
 	console.log("POST /listings")
-	const params = ['title', 'image', 'lat', 'long', 'price']
+	const params = ['title', 'image', 'lat', 'long', 'price', 'description','user']
 	if(hasParameters(req.body, params)) {
-		makeListing(req.body.title, req.body.image, parseFloat(req.body.lat), parseFloat(req.body.long), parseFloat(req.body.price), () => {
+		makeListing(req.body.title, req.body.image, parseFloat(req.body.lat), parseFloat(req.body.long), parseFloat(req.body.price), req.body.description, req.body.user, () => {
 			console.log("model called back")
 		})
 		res.send('Posted your listing')

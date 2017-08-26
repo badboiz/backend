@@ -25,17 +25,19 @@ function connect(success : Function, failure : Function = function(){}) {
   })
 }
 
-export function createListing(title : string, image : string, lat : number, long : number, price: number) {
+export function createListing(title : string, image : string, lat : number, long : number, price: number, description: string, user: String, callback: Function) {
 	connect((db) => {
 		let data = {
 			title: title,
 			image: image,
 			lat: lat,
 			long: long,
-			price: price
+			price: price,
+			description: description,
+			user: user
 		}
 		db.collection(LISTINGS_COLLECTION).insert(data, (err, docs) => {
-			console.log(docs)
+			callback(docs)
 		})
 	})
 }
