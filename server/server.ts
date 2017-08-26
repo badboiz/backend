@@ -24,6 +24,10 @@ function hasParameters(query, params) {
 
 // Routing
 
+app.get('/test', function(req, res) {
+	res.send('Quiky is up!')
+})
+
 app.get('/listings', function(req, res) {
 	const params = ['lat', 'long']
 	if(hasParameters(req.query, params)) {
