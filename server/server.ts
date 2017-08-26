@@ -1,8 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-import {getLocalListings} from './controller'
+import {getLocalListings, makeListing} from './controller'
 
+const PORT = process.env.PORT || 3000
 const app = express()
 
 // Middleware
@@ -31,8 +32,9 @@ app.get('/test', function(req, res) {
 app.get('/listings', function(req, res) {
 	const params = ['lat', 'long']
 	if(hasParameters(req.query, params)) {
-		let localListings = getLocalListings(req.query.lat, req.query.long)
-		res.json(localListings)
+		getLocalListings(req.query.lat, req.query.long, (localListings) => {
+			res.json(localListings)
+		})
 	} else {
 		res.send('One or more of the parameters [' + params.toString() + '] were missing').status(400)
 	}
@@ -40,8 +42,12 @@ app.get('/listings', function(req, res) {
 })
 
 app.post('/listings', function(req, res) {
-	const params = ['title', 'lat', 'long', 'photo']
+	console.log("POST /listings")
+	const params = ['title', 'image', 'lat', 'long', 'price']
 	if(hasParameters(req.body, params)) {
+		makeListing(req.body.title, req.body.image, parseFloat(req.body.lat), parseFloat(req.body.long), parseFloat(req.body.price), () => {
+			console.log("model called back")
+		})
 		res.send('Posted your listing')
 	} else {
 		res.send('One or more of the parameters [' + params.toString() + '] were missing').status(400)
@@ -50,5 +56,5 @@ app.post('/listings', function(req, res) {
 
 // Server init
 
-app.listen(process.env.PORT || 3000)
-console.log('Running')
+app.listen(PORT)
+console.log('Running on', PORT)

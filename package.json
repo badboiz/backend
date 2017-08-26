@@ -26,6 +26,7 @@
     "gps-util": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.2",
+    "mongodb": "^2.2.31",
     "typescript": "^2.6.0-dev.20170825"
   }
 }
