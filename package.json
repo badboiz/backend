@@ -2,8 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
+    "build": "gulp ts",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +19,10 @@
   },
   "homepage": "https://github.com/badboiz/backend#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "@types/node": "^8.0.25",
+    "express": "^4.15.4",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.2",
+    "typescript": "^2.6.0-dev.20170825"
   }
 }
