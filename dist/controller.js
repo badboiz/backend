@@ -4,7 +4,7 @@ var gps = require('gps-util');
 function createListing(label, photoUrl, callback) {
 }
 exports.createListing = createListing;
-function checkUsersSurround(userLat, userLong) {
+function getLocalListings(userLat, userLong) {
     var localListings = [];
     var allListings = [{
             lat: -36.752026,
@@ -36,5 +36,5 @@ function checkUsersSurround(userLat, userLong) {
     }
     return localListings;
 }
-exports.checkUsersSurround = checkUsersSurround;
+exports.getLocalListings = getLocalListings;
 //console.log(checkUsersSurround(-36.752026, 174.72816999999998)) //constellation

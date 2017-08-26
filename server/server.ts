@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-import {checkUsersSurround} from './controller'
+import {getLocalListings} from './controller'
 
 const app = express()
 
@@ -27,7 +27,7 @@ function hasParameters(query, params) {
 app.get('/listings', function(req, res) {
 	const params = ['lat', 'long']
 	if(hasParameters(req.query, params)) {
-		let localListings = checkUsersSurround(req.query.lat, req.query.long)
+		let localListings = getLocalListings(req.query.lat, req.query.long)
 		res.json(localListings)
 	} else {
 		res.send('One or more of the parameters [' + params.toString() + '] were missing').status(400)

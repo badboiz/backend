@@ -4,7 +4,7 @@ export function createListing(label, photoUrl, callback) {
 
 }
 
-export function checkUsersSurround(userLat, userLong) {
+export function getLocalListings(userLat, userLong) {
 	let localListings = []
 	let allListings = [{
 		lat: -36.752026, 

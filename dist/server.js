@@ -23,7 +23,7 @@ function hasParameters(query, params) {
 app.get('/listings', function (req, res) {
     var params = ['lat', 'long'];
     if (hasParameters(req.query, params)) {
-        var localListings = controller_1.checkUsersSurround(req.query.lat, req.query.long);
+        var localListings = controller_1.getLocalListings(req.query.lat, req.query.long);
         res.json(localListings);
     }
     else {
