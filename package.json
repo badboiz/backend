@@ -23,6 +23,7 @@
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.4",
+    "gps-util": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.2",
     "typescript": "^2.6.0-dev.20170825"
