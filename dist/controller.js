@@ -4,39 +4,37 @@ var gps = require('gps-util');
 function createListing(label, photoUrl, callback) {
 }
 exports.createListing = createListing;
-function checkUsersSurround(userlat, userlong) {
-    var new_output_list = [];
-    var exisiting_list = [
-        {
+function checkUsersSurround(userLat, userLong) {
+    var localListings = [];
+    var allListings = [{
             lat: -36.752026,
-            long: 174.72816999999998
-            //constellation
-        },
-        {
+            long: 174.72816999999998,
+            title: "Constellation"
+        }, {
             lat: -36.8442,
-            long: 174.7679 //britomart
-        },
-        {
+            long: 174.7679,
+            title: "Britomart"
+        }, {
             lat: -36.8430,
-            long: 174.7669 //Auckland ferry
-        },
-        {
+            long: 174.7669,
+            title: "Auckland ferry"
+        }, {
             lat: -36.8433291,
-            long: 174.76533859999995 //pwc buidling
-        },
-        {
+            long: 174.76533859999995,
+            title: "PWC buidling"
+        }, {
             lat: -36.722173,
-            long: 174.71267999999998 //Albany station
-        }
-    ];
-    for (var _i = 0, exisiting_list_1 = exisiting_list; _i < exisiting_list_1.length; _i++) {
-        var listing = exisiting_list_1[_i];
-        var distance = gps.getDistance(userlong, userlat, listing.long, listing.lat);
+            long: 174.71267999999998,
+            title: "Albany station"
+        }];
+    for (var _i = 0, allListings_1 = allListings; _i < allListings_1.length; _i++) {
+        var listing = allListings_1[_i];
+        var distance = gps.getDistance(userLong, userLat, listing.long, listing.lat);
         if (distance / 1000 < 2) {
-            new_output_list.push(listing);
+            localListings.push(listing);
         }
     }
-    console.log(new_output_list);
+    return localListings;
 }
 exports.checkUsersSurround = checkUsersSurround;
-checkUsersSurround(-36.752026, 174.72816999999998); //constellation
+//console.log(checkUsersSurround(-36.752026, 174.72816999999998)) //constellation
