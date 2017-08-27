@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 var mongodb = require('mongodb')
 var MongoClient = mongodb.MongoClient
+import {getTimeStamp} from './controller';
 
 const DB_CONFIG_PATH = path.join(__dirname, '../db.config')
 
@@ -58,3 +59,21 @@ export function readUserListings(user, callback) {
 		})
 	})
 }
+//
+// export function deleteExpiredSession(callback : Function) {
+// 	var deadline = getTimeStamp() - 3600;
+// 	connect(function(db) {
+// 	  db.collection(LISTINGS_COLLECTION).remove({ created: {$lt: deadline}}, function(err, docs) {
+// 	    callback(docs)
+// 	        })
+//
+// 	 })
+// 	}
+//
+// export function deleteall(callback){
+// 	connect(function(db) {
+// 		db.collection(LISTINGS_COLLECTION).remove({}, function(err,docs){
+// 			callback(docs)
+// 		})
+// 	})
+// }

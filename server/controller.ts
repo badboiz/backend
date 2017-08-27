@@ -1,5 +1,5 @@
 const gps = require('gps-util')
-import {createListing, readListings, readUserListings} from './model'
+import {createListing, readListings, readUserListings,deleteExpiredSession} from './model'
 
 export function makeListing(title, image, lat, long, price,description,userid, callback) {
 	let created = getTimeStamp()
@@ -27,3 +27,7 @@ export function getTimeStamp() {
 	var time = Math.round(Date.now() / 1000);
 	return time;
 }
+//
+// deleteExpiredSession(function(docs) {
+// 	console.log(docs);
+// })
