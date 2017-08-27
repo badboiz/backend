@@ -58,3 +58,12 @@ export function readUserListings(user, callback) {
 		})
 	})
 }
+
+
+export function readSingleListing(id, callback) {
+	connect((db) => {
+		db.collection(LISTINGS_COLLECTION).find({"_id": mongodb.ObjectId(id)}).toArray((err, docs) => {
+			callback(docs)
+		})
+	})
+} 

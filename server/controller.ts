@@ -1,5 +1,5 @@
 const gps = require('gps-util')
-import {createListing, readListings, readUserListings} from './model'
+import {createListing, readListings, readUserListings, readSingleListing} from './model'
 
 export function makeListing(title, image, lat, long, price,description,userid, callback) {
 	let created = getTimeStamp()
@@ -21,6 +21,10 @@ export function getLocalListings(userLat, userLong, callback) {
 
 export function getUserListings(user, callback) {
 	readUserListings(user, callback)
+}
+
+export function getSingleListing(id, callback) {
+	readSingleListing(id, callback)
 }
 
 export function getTimeStamp() {
