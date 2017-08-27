@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-import {getLocalListings, getUserListings, makeListing} from './controller'
+import {getLocalListings, getUserListings, makeListing, getSingleListing} from './controller'
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -29,6 +29,15 @@ function hasParameters(query, params) {
 
 app.get('/test', function(req, res) {
 	res.send('Quiky is up!')
+})
+
+app.get('/listing', function(req, res) {
+	const params = ['id']
+	if(hasParameters(req.query, params)) {
+		getSingleListing(req.query.id, (listing) => {
+			res.json(listing)
+		})
+	}
 })
 
 app.get('/listings', function(req, res) {

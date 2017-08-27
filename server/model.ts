@@ -59,7 +59,16 @@ export function readUserListings(user, callback) {
 		})
 	})
 }
-//
+
+
+export function readSingleListing(id, callback) {
+	connect((db) => {
+		db.collection(LISTINGS_COLLECTION).find({"_id": mongodb.ObjectId(id)}).toArray((err, docs) => {
+			callback(docs)
+		})
+	})
+}
+
 // export function deleteExpiredSession(callback : Function) {
 // 	var deadline = getTimeStamp() - 3600;
 // 	connect(function(db) {
@@ -69,11 +78,3 @@ export function readUserListings(user, callback) {
 //
 // 	 })
 // 	}
-//
-// export function deleteall(callback){
-// 	connect(function(db) {
-// 		db.collection(LISTINGS_COLLECTION).remove({}, function(err,docs){
-// 			callback(docs)
-// 		})
-// 	})
-// }
